@@ -3,6 +3,7 @@ import pandas as pd
 from datetime import datetime
 import warnings
 warnings.filterwarnings("ignore")
+import numpy as np
 from scraping import save_to_csv
 
 DATA_PATH = '../data/'
@@ -27,6 +28,9 @@ def clean_dataset(df):
     for i in range(0,len(df)):
         df['dates'][i] = datetime.strptime(df['dates'][i], '%B %d, %Y')
         df['dates'][i]=df['dates'][i].date()
+
+    Index = np.arange(0,186)
+    df['sno'] = Index
         
     df['views'] = pd.to_numeric(df['views'])
     
