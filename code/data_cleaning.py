@@ -4,7 +4,7 @@ from datetime import datetime
 import warnings
 warnings.filterwarnings("ignore")
 import numpy as np
-from scraping import save_to_csv
+from imdb_scraping import save_to_csv
 
 DATA_PATH = '../data/'
 

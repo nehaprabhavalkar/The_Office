@@ -62,7 +62,7 @@ def display_top_3_episodes(result):
 if __name__ == '__main__':
 
     file_name = 'office.csv'
-    episode_name = 'Goodbye Michael'
+    episode_name = 'Basketball'
 
     df = pd.read_csv(DATA_PATH + file_name)
     df = filter_dataset(df)
