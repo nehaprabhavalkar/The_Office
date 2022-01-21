@@ -6,50 +6,84 @@ import math
 
 DATA_PATH = '../data/'
 
-df = pd.read_csv(DATA_PATH+'office.csv')
 
-g1 = df.groupby(['season'], as_index=False).count()
-g1 = g1[['season','title']]
-g1.rename(columns={'title':'no'}, inplace=True)
+def get_num_episodes(df):
+    grouped_seasons = df.groupby(['season'], as_index=False).count()
+    grouped_seasons = grouped_seasons[['season','title']]
+    grouped_seasons.rename(columns={'title':'no'}, inplace=True)
 
-seasons = g1['season'].tolist()
-nos = g1['no'].tolist()
+    seasons = grouped_seasons['season'].tolist()
+    nos = grouped_seasons['no'].tolist()
 
-s = []
-d = []
-seas = []
-eps = []
+    return seasons , nos
 
-for i in range(1,10):
-    for j in range(1,nos[i-1]+1):
-        eps.append(j)
-        digits = int(math.log10(j))+1
-        if digits < 2:
-            j = format(j, '02')
-        url = "https://www.officequotes.net/no"+ str(i) + "-"+str(j)+".php"
-       
-        response=requests.get(url)
-        
-        if response.status_code == 200:
-            print(url)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        
-        officetable=soup.find_all('div',{'class':"quote"})
-        
-        for k in officetable:
-            bs = k.find_all('b')
+
+def extract_transcripts(seasons, nos):
+    min_season = min(seasons)
+    max_season = max(seasons)
+
+    for season in range(min_season, max_season+1):
+
+        for episode in range(1,nos[season-1]+1):
             
-            for ba in bs:
-                d.append(ba.next_sibling)
-                seas.append(i)
-                s.append(ba.text)
-                eps.append(j)
+            digits = int(math.log10(episode))+1
+            if digits < 2:
+                episode = format(episode, '02')
+
+            url = "https://www.officequotes.net/no"+ str(season) + "-"+str(episode)+".php"
+        
+            response=requests.get(url)
+            
+            # if response.status_code == 200:
+            #     print(url)
+
+            soup = BeautifulSoup(response.text, 'html.parser')
+            
+            quote_content =soup.find_all('div',{'class':"quote"})
+            
+            for quote in quote_content:
+                b_tags = quote.find_all('b')
+                
+                for tag in b_tags:
+                    dialogue = tag.next_sibling
+                    speaker = tag.text
+
+                    dialogue_list.append(dialogue)
+                    speaker_list.append(speaker)
+                    seasons_list.append(season)
+
+        print("Data scraped for Season {}".format(season))
+
+    return seasons_list, speaker_list, dialogue_list
+
                
-            
-dataframe = pd.DataFrame()
+def create_dataframe(seasons_list, speaker_list, dialogue_list, output_file_name):
+    dataframe = pd.DataFrame()
 
-dataframe['season'] = seas
-dataframe['speaker']= s
-dataframe['dialogue']= d
+    dataframe['season'] = seasons_list
+    dataframe['speaker'] = speaker_list
+    dataframe['dialogue'] = dialogue_list
 
-dataframe.to_csv(DATA_PATH + 'dialogues.csv',index=False)
+    dataframe.to_csv(DATA_PATH + output_file_name, index=False)        
+
+    print("DataFrame created successfully")
+
+
+if __name__ == '__main__':
+
+    file_name = 'office.csv'
+    output_file_name = 'dialogues.csv'
+
+    speaker_list = []
+    dialogue_list = []
+    seasons_list = []
+
+    df = pd.read_csv(DATA_PATH + file_name)
+
+    seasons, nos = get_num_episodes(df)
+
+    seasons_list, speaker_list, dialogue_list = extract_transcripts(seasons, nos)
+
+    create_dataframe(seasons_list, speaker_list, dialogue_list, output_file_name)
+
+
