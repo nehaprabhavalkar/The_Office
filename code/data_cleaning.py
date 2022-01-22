@@ -8,7 +8,7 @@ from imdb_scraping import save_to_csv
 
 DATA_PATH = '../data/'
 
-def clean_dataset(df):
+def clean_imdb_dataset(df):
     for i in range(0,len(df)):
         df['title'][i] = re.sub('[^A-Za-z0-9]+', ' ', df['title'][i])
         df['title'][i] = df['title'][i].strip()
@@ -41,12 +41,28 @@ def clean_dataset(df):
     return df
 
 
+def clean_dialogues_dataset(df):
+    for i in range(0,len(df)):
+        df['speaker'][i] = df['speaker'][i].replace(':','')
+
+    df = df.drop(df[df['speaker'].str.contains('Deleted Scene')].index)
+
+    return df
+
+
 if __name__ == '__main__':
 
-    file_name = 'office.csv'
+    imdb_file_name = 'office.csv'
+    dialogue_file_name = 'dialogues.csv'
 
-    df = pd.read_csv(DATA_PATH + file_name)
+    df = pd.read_csv(DATA_PATH + imdb_file_name)
 
-    cleaned_df = clean_dataset(df)
+    cleaned_df = clean_imdb_dataset(df)
 
-    save_to_csv(cleaned_df, file_name)
+    save_to_csv(cleaned_df, imdb_file_name)
+
+    df = pd.read_csv(DATA_PATH + dialogue_file_name)
+
+    cleaned_df = clean_imdb_dataset(df)
+
+    save_to_csv(cleaned_df, dialogue_file_name)
