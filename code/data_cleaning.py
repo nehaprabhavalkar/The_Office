@@ -47,6 +47,11 @@ def clean_dialogues_dataset(df):
 
     df = df.drop(df[df['speaker'].str.contains('Deleted Scene')].index)
 
+    null_count = df.isnull().sum().any()
+    
+    if null_count == True:
+        df1 = df.dropna()
+    
     return df
 
 
