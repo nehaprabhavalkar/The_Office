@@ -4,6 +4,7 @@ import pandas as pd
 import warnings
 warnings.filterwarnings("ignore")
 from datetime import datetime
+from utils import load_yaml_data
 
 DATA_PATH = '../data/'
 
@@ -82,8 +83,10 @@ if __name__ == '__main__':
     desc_list = []
     season_list = []
 
-    file_name = 'office.csv'
+    data = load_yaml_data()
+
+    imdb_file_name = data['imdb_file_name']
 
     scrape_data()
     df = create_dataframe()
-    save_to_csv(df,file_name)
+    save_to_csv(df,imdb_file_name)

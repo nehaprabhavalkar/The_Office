@@ -9,6 +9,7 @@ from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import CountVectorizer
 import warnings
 warnings.filterwarnings('ignore')
+from utils import load_yaml_data
 
 DATA_PATH = '../data/'
 
@@ -61,10 +62,12 @@ def display_top_3_episodes(result):
 
 if __name__ == '__main__':
 
-    file_name = 'office.csv'
-    episode_name = 'Basketball'
+    data = load_yaml_data()
 
-    df = pd.read_csv(DATA_PATH + file_name)
+    imdb_file_name = data['imdb_file_name']
+    episode_name = data['episode_name']
+
+    df = pd.read_csv(DATA_PATH + imdb_file_name)
     df = filter_dataset(df)
 
     corpus = transform_data(df)

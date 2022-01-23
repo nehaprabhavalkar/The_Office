@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import re
 import math
+from utils import load_yaml_data
 
 DATA_PATH = '../data/'
 
@@ -71,19 +72,21 @@ def create_dataframe(seasons_list, speaker_list, dialogue_list, output_file_name
 
 if __name__ == '__main__':
 
-    file_name = 'office.csv'
-    output_file_name = 'dialogues.csv'
+    data = load_yaml_data()
+
+    imdb_file_name = data['imdb_file_name']
+    dialogue_file_name = data['dialogue_file_name']
 
     speaker_list = []
     dialogue_list = []
     seasons_list = []
 
-    df = pd.read_csv(DATA_PATH + file_name)
+    df = pd.read_csv(DATA_PATH + imdb_file_name)
 
     seasons, nos = get_num_episodes(df)
 
     seasons_list, speaker_list, dialogue_list = extract_transcripts(seasons, nos)
 
-    create_dataframe(seasons_list, speaker_list, dialogue_list, output_file_name)
+    create_dataframe(seasons_list, speaker_list, dialogue_list, dialogue_file_name)
 
 

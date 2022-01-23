@@ -5,6 +5,7 @@ import warnings
 warnings.filterwarnings("ignore")
 import numpy as np
 from imdb_scraping import save_to_csv
+from utils import load_yaml_data
 
 DATA_PATH = '../data/'
 
@@ -48,7 +49,7 @@ def clean_dialogues_dataset(df):
     df = df.drop(df[df['speaker'].str.contains('Deleted Scene')].index)
 
     null_count = df.isnull().sum().any()
-    
+
     if null_count == True:
         df1 = df.dropna()
     
@@ -57,8 +58,10 @@ def clean_dialogues_dataset(df):
 
 if __name__ == '__main__':
 
-    imdb_file_name = 'office.csv'
-    dialogue_file_name = 'dialogues.csv'
+    data = load_yaml_data()
+
+    imdb_file_name = data['imdb_file_name']
+    dialogue_file_name = data['dialogue_file_name']
 
     df = pd.read_csv(DATA_PATH + imdb_file_name)
 
