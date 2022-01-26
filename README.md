@@ -7,7 +7,7 @@
 
 
 ## Architecture Diagram
-![Architecture Diagram](https://raw.githubusercontent.com/nehaprabhavalkar/The_Office/images/office_diagram.png?raw=true)
+![Architecture Diagram](https://raw.githubusercontent.com/nehaprabhavalkar/The-Office/master/images/office_diagram.jpg)
 
 ## Tech Stack
 
