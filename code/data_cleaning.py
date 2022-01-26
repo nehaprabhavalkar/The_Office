@@ -1,3 +1,17 @@
+'''
+----------------------------------------------
+Project: The Office
+File: data_cleaning.py
+Description:
+    
+  performs the following functions:-
+    - removal of extra white spaces
+    - removal of irrelevant punctuations
+    - converts date into proper format
+    
+-----------------------------------------------
+'''
+
 import re
 import pandas as pd
 from datetime import datetime

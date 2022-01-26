@@ -1,10 +1,22 @@
+'''
+----------------------------------------------
+Project: The Office
+File: utils.py
+Description:
+    
+    contains helper functions used frequently
+    in other modueles
+    
+-----------------------------------------------
+'''
+
 import yaml
 import plotly.graph_objects as go
 
 def load_yaml_data():
     with open('../conf/config.yml', 'r') as file:
         data = yaml.safe_load(file)
-        
+
     return data
 
 

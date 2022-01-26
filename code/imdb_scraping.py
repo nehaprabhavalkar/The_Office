@@ -1,3 +1,15 @@
+'''
+----------------------------------------------
+Project: The Office
+File: imdb_scraping.py
+Description:
+    
+    scrapes data from IMDb website and stores
+    into a csv file
+    
+-----------------------------------------------
+'''
+
 import requests
 from bs4 import BeautifulSoup 
 import pandas as pd

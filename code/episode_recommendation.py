@@ -1,3 +1,16 @@
+'''
+----------------------------------------------
+Project: The Office
+File: episode_recommendation.py
+Description:
+    
+    content based recommender module which
+    recommends based on similar episode 
+    description
+    
+-----------------------------------------------
+'''
+
 import pandas as pd
 import numpy as np
 import re

@@ -1,3 +1,15 @@
+'''
+----------------------------------------------
+Project: The Office
+File: dialogues_scraping.py
+Description:
+    
+    scrapes data from officequotes website 
+    and stores into a csv file
+    
+-----------------------------------------------
+'''
+
 import requests
 from bs4 import BeautifulSoup 
 import pandas as pd

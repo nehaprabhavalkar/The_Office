@@ -1,3 +1,16 @@
+'''
+----------------------------------------------
+Project: The Office
+File: data_quality_check.py
+Description:
+    
+    performs the following checks:-
+    - row count check
+    - null values check
+    
+-----------------------------------------------
+'''
+
 import pandas as pd 
 from utils import load_yaml_data
 
