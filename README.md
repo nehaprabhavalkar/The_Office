@@ -1,9 +1,11 @@
 # The Office
 
-
-
 ## Overview
 
+- Automated data collection of episode ratings and transcripts
+- Automated data quality checks to ensure correctness of the data
+- Infographics about the TV series
+- Content-based recommendation system to recommend similar episodes 
 
 
 ## Architecture Diagram

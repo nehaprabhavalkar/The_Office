@@ -15,7 +15,7 @@ import plotly.express as px
 import plotly.figure_factory as ff
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
-from utils import load_yaml_data, plot_indicator_chart
+from utils import load_yaml_data, plot_indicator_chart, plot_bar_chart, plot_line_chart
 
 
 DATA_PATH = '../data/'
@@ -105,6 +105,45 @@ def plot_graph_4(df):
     return fig
 
 
+def plot_graph_5(df):
+    season_group = df.groupby(['season'], as_index=False).count()
+    season_group = season_group[['season','title']]
+
+    no_eps_df = season_group.rename(columns={'title':'no_of_episodes'})
+
+    x_column = 'season'
+    y_column = 'no_of_episodes'
+    graph_title = 'Number of episodes per Season'
+
+    fig = plot_bar_chart(no_eps_df, x_column, y_column, graph_title)
+
+    return fig 
+
+
+def plot_graph_6(df):
+    top_10_view = (df.sort_values(by=['views'],ascending=False)).iloc[:10,:]
+
+    x_column = 'season'
+    y_column = 'views'
+    graph_title = 'Top 10 highest viewed episodes of all time'
+
+    fig = plot_bar_chart(top_10_view, x_column, y_column, graph_title)
+
+    return fig 
+
+
+def plot_graph_7(df):
+    views_per_season = pd.DataFrame(df.groupby(['season'])['views'].mean()).reset_index()
+
+    x_column = 'season'
+    y_column = 'views'
+    graph_title = 'Views for each season'
+
+    fig = plot_line_chart(views_per_season, x_column, y_column, graph_title)
+
+    return fig 
+
+
 if __name__ == '__main__':
 
     data = load_yaml_data()
@@ -112,12 +151,20 @@ if __name__ == '__main__':
     imdb_file_name = data['imdb_file_name']
     dialogue_file_name = data['dialogue_file_name']
 
-    df = pd.read_csv(DATA_PATH + dialogue_file_name)
+    imdb_df = pd.read_csv(DATA_PATH + imdb_file_name)
 
-    fig = plot_graph_1(df)
+    dialogues_df = pd.read_csv(DATA_PATH + dialogue_file_name)
 
-    fig = plot_graph_2(df)
+    fig = plot_graph_1(dialogues_df)
 
-    fig = plot_graph_3(df)
+    fig = plot_graph_2(dialogues_df)
 
-    fig = plot_graph_4(df)
+    fig = plot_graph_3(dialogues_df)
+
+    fig = plot_graph_4(dialogues_df)
+
+    fig = plot_graph_5(imdb_df)
+
+    fig = plot_graph_6(imdb_df)
+
+    fig = plot_graph_7(imdb_df)
