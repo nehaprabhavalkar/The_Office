@@ -19,7 +19,27 @@
 - plotly
 
 ## Project Directory Structure
+```
+The-Office
+├─ .github
+│  └─ ISSUE_TEMPLATE
+│     ├─ story-template.md
+│     └─ task-template.md
+├─ .gitignore
+├─ code
+│  ├─ dialogues_scraping.py
+│  ├─ episode_recommendation.py
+│  ├─ graphs.py
+│  ├─ imdb_scraping.py
+│  └─ utils.py
+├─ conf
+│  └─ config.yml
+├─ images
+│  └─ office_diagram.jpg
+├─ LICENSE
+└─ README.md
 
+```
 
 ## Files Description 
 1. **config.yml** - configuration file
@@ -36,6 +56,7 @@
     - null values check
 6. **episode_recommendation.py** -  content based recommender module which
     recommends based on similar episode description
+7. **graphs.py** - plots graph using plotly
     
 
 
@@ -44,3 +65,4 @@
 
 ## License
 MIT
+
