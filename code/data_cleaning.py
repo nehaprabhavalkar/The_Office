@@ -19,7 +19,7 @@ import warnings
 warnings.filterwarnings("ignore")
 import numpy as np
 from imdb_scraping import save_to_csv
-from utils import load_yaml_data
+from helper import load_yaml_data
 
 DATA_PATH = '../data/'
 

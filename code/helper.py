@@ -51,3 +51,18 @@ def plot_line_chart(df, x_column, y_column, graph_title):
     fig.update_layout(title_text=graph_title, template='plotly_dark')
 
     return fig 
+
+
+def plot_table(df, column_1, column_2, column_3, values, title_str):
+
+    fig = go.Figure(data=[go.Table(header=dict(values=values,
+                                          fill_color='blue',
+                                          height=30),
+                    cells=dict(values=[column_1, column_2, column_3],
+                            height=30))
+                    ])
+
+    fig.update_layout(title_text=title_str, template='plotly_dark')
+
+
+    return fig 

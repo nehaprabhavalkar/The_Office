@@ -17,10 +17,12 @@
 
 - requests
 - pandas
+- Beautiful Soup
 - sklearn
 - plotly
 
 ## Project Directory Structure
+
 ```
 The-Office
 ├─ .github
@@ -32,8 +34,8 @@ The-Office
 │  ├─ dialogues_scraping.py
 │  ├─ episode_recommendation.py
 │  ├─ graphs.py
-│  ├─ imdb_scraping.py
-│  └─ utils.py
+│  ├─ helper.py
+│  └─ imdb_scraping.py
 ├─ conf
 │  └─ config.yml
 ├─ images
@@ -59,6 +61,7 @@ The-Office
 6. **episode_recommendation.py** -  content based recommender module which
     recommends based on similar episode description
 7. **graphs.py** - plots graph using plotly
+8. **helper.py** - contains helper functions used frequently in other modueles
     
 
 
@@ -67,4 +70,3 @@ The-Office
 
 ## License
 MIT
-

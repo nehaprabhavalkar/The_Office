@@ -22,7 +22,7 @@ from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import CountVectorizer
 import warnings
 warnings.filterwarnings('ignore')
-from utils import load_yaml_data
+from helper import load_yaml_data
 
 DATA_PATH = '../data/'
 

@@ -9,13 +9,13 @@ Description:
 -----------------------------------------------
 '''
 
-import pandas as pd
 import re
+import pandas as pd
 import plotly.express as px
 import plotly.figure_factory as ff
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
-from utils import load_yaml_data, plot_indicator_chart, plot_bar_chart, plot_line_chart
+from helper import load_yaml_data, plot_indicator_chart, plot_bar_chart, plot_line_chart, plot_table
 
 
 DATA_PATH = '../data/'
@@ -144,6 +144,23 @@ def plot_graph_7(df):
     return fig 
 
 
+def plot_graph_8(df):
+    top_5_viewed_dirs = (df.sort_values(by=['views'],ascending=False)).iloc[:5,:]
+
+    eps = top_5_viewed_dirs['title'].tolist()
+    dirs = top_5_viewed_dirs['director'].tolist()
+    season = top_5_viewed_dirs['season'].tolist()
+
+    title_str = 'Names of directors who directed top 5 highest rated episodes'
+
+    values = ['season','title','director']
+
+    fig = plot_table(top_5_viewed_dirs, eps, dirs, season, values, title_str)
+
+    return fig 
+
+
+
 if __name__ == '__main__':
 
     data = load_yaml_data()
@@ -168,3 +185,5 @@ if __name__ == '__main__':
     fig = plot_graph_6(imdb_df)
 
     fig = plot_graph_7(imdb_df)
+
+    fig = plot_graph_8(imdb_df)

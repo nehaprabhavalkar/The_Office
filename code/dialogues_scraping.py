@@ -11,11 +11,11 @@ Description:
 '''
 
 import requests
-from bs4 import BeautifulSoup 
-import pandas as pd
 import re
 import math
-from utils import load_yaml_data
+from bs4 import BeautifulSoup 
+import pandas as pd
+from helper import load_yaml_data
 
 DATA_PATH = '../data/'
 
