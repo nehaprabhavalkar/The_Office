@@ -65,9 +65,11 @@ def clean_dialogues_dataset(df):
     null_count = df.isnull().sum().any()
 
     if null_count == True:
-        df1 = df.dropna()
-    
-    return df
+        non_null_df = df.dropna()
+
+    print("Dataset cleaned successfully")
+
+    return non_null_df
 
 
 if __name__ == '__main__':
@@ -85,6 +87,6 @@ if __name__ == '__main__':
 
     df = pd.read_csv(DATA_PATH + dialogue_file_name)
 
-    cleaned_df = clean_imdb_dataset(df)
+    cleaned_df = clean_dialogues_dataset(df)
 
     save_to_csv(cleaned_df, dialogue_file_name)

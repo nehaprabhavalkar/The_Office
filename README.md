@@ -19,7 +19,11 @@
 - pandas
 - Beautiful Soup
 - sklearn
+- nltk
 - plotly
+
+#### Deployment
+- AWS EC2
 
 ## Project Directory Structure
 
