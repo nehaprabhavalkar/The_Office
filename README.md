@@ -9,7 +9,7 @@
 
 
 ## Architecture Diagram
-![Architecture Diagram](https://raw.githubusercontent.com/nehaprabhavalkar/The-Office/master/images/office_diagram.jpg)
+![Architecture Diagram](https://raw.githubusercontent.com/nehaprabhavalkar/The_Office/master/images/office_diagram.jpg)
 
 ## Tech Stack
 
@@ -70,6 +70,16 @@ The-Office
 
 
 ## Setup
+#### For Deployment 
+
+1. Clone the repository using 
+   git clone https://github.com/nehaprabhavalkar/The_Office.git 
+
+2. While launching your EC2 instance, go to Advanced Details and in User Data field add file setup.sh
+
+3. Using any FTP application (eg. FileZilla) transfer the entire repository into your VM
+
+4. Run using python3 imdb_scraping.py
 
 
 ## License
