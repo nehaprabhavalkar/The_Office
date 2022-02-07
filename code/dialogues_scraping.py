@@ -47,8 +47,8 @@ def extract_transcripts(seasons, nos):
         
             response=requests.get(url)
             
-            # if response.status_code == 200:
-            #     print(url)
+            if response.status_code == 200:
+                print("Data can be scraped from URL {}".format(url))
 
             soup = BeautifulSoup(response.text, 'html.parser')
             

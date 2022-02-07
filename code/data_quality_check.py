@@ -11,6 +11,7 @@ Description:
 -----------------------------------------------
 '''
 
+from doctest import DocFileTest
 import pandas as pd 
 from helper import load_yaml_data
 
@@ -19,10 +20,14 @@ DATA_PATH = '../data/'
 def dq_on_imdb(df):
     check_row_count(df)
     check_null_values(df)
+    
+    print("Data Quality Check is completed for IMDb data")
 
 def dq_on_dialogues(df):
     check_row_count(df)
     check_null_values(df) 
+
+    print("Data Quality Check is completed for Transcripts data")
 
 def check_row_count(df):
     if len(df) > 0:

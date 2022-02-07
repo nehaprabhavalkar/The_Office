@@ -79,7 +79,10 @@ The-Office
 
 3. Using any FTP application (eg. FileZilla) transfer the entire repository into your VM
 
-4. Run using python3 imdb_scraping.py
+4. Navigate into the folder and install the requirements using 
+   pip install -r requirements.txt
+
+5. Run using python3 imdb_scraping.py
 
 
 ## License
